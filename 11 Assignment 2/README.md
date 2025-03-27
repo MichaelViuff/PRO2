@@ -9,9 +9,9 @@ Implement the chosen system.
 ## Requirements
  - The application must use Sockets connecting client and server, with the server being multithreaded 
  - The client must at least be able to 
-1.	Get a list of all Vinyls.
-2.	Reserve, borrow, and return a Vinyl
-3.	Receive messages broadcasted (multicasted) when a Vinyl changes lending state, and when a Vinyl has been removed (e.g. by the server)
+  1.	Get a list of all Vinyls.
+  2.	Reserve, borrow, and return a Vinyl
+  3.	Receive messages broadcasted (multicasted) when a Vinyl changes lending state, and when a Vinyl has been removed (e.g. by the server)
 •	All messages between client and server must be in JSON format. Error messages from server included.
 •	You must use MVVM with at least two views, like assignment 1.
 •	You must use the Observer design pattern as part of the solution. 

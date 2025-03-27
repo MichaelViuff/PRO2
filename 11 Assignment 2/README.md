@@ -1,22 +1,23 @@
 # 11 Assignment 2 - MVVM and Observer and Sockets
 
 ## The system:
-You must design and implement a simple Client/Server system, supporting multiple Clients. 
-Possible systems include:
-- Vinyl Library
-- Simple Chat
-- Tic-tac-toe
-- Collaborative Whiteboard
-- File-sharing system
+You must design and implement a simple client/server application as the Vinyl lending library system, from Assignment 1, but with multiple clients.  
 
 ## The assignment: 
 Implement the chosen system.
 
 ## Requirements
- - The Server must be able to support multiple concurrent Clients.
- - The Client must be able to: 
-   - send messages to the server
-   - receive messages from the server
+ - The application must use Sockets connecting client and server, with the server being multithreaded 
+ - The client must at least be able to 
+1.	Get a list of all Vinyls.
+2.	Reserve, borrow, and return a Vinyl
+3.	Receive messages broadcasted (multicasted) when a Vinyl changes lending state, and when a Vinyl has been removed (e.g. by the server)
+•	All messages between client and server must be in JSON format. Error messages from server included.
+•	You must use MVVM with at least two views, like assignment 1.
+•	You must use the Observer design pattern as part of the solution. 
+•	You must use either Singleton or Multiton as a log to the server console and to file(s). It should always be possible to find all the communication for an entire day –text, IP address, date and time
+•	It is required to make a class diagram for the full solution (in Astah). In the diagram you must be able to identify the MVVM, the Observer pattern and the design of the socket related classes 
+
 
 What messages you send depends on your choice of application. Messages can be used to ask the Server to perform an action.
 

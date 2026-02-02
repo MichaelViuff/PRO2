@@ -41,7 +41,7 @@ Hand in everything in a single zip-file with:
  - Documentation of your protocol (messages, syntax and actions).
  - Annotated printout from Wireshark that show the following information:
    - The segments exchanged in the 3-way handshake. How are they identified?
-   - IP addresses and port numbers associated with the TCP socket established between your client and server. The client and server must run on different hosts (NOT localhost).
+   - IP addresses and port numbers associated with the TCP socket established between your client and server. The client and server should preferably run on different hosts.
    - Application layer “borrow” request message from client and response message from server.
 
 

@@ -4,7 +4,7 @@ import java.util.List;
 public class TrafficLight
 {
     private List<Car> cars;
-    private String[] lights = {"GREEN", "YELLOW", "RED", "YELLOW_AND_RED"};
+    private String[] lights = {"GREEN", "YELLOW", "RED", "RED_AND_YELLOW"};
     private int count = 2;
     private String currentLight;
 
@@ -40,4 +40,5 @@ public class TrafficLight
         }
     }
 }
+
 

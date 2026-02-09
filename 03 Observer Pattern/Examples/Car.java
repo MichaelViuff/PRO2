@@ -1,6 +1,5 @@
 public class Car
 {
-    private String previousLight;
     private int id;
 
     public Car(int id)
@@ -30,7 +29,7 @@ public class Car
         {
             System.out.println("Traffic signal broken...");
         }
-        previousLight = currentLight;
     }
 }
+
 

@@ -9,7 +9,7 @@ Create the Traffic light example that was shown in the presentation, with the cl
 Run the example and verify that the `Car` reacts to the traffic light changing.
 
 Implement a new class `Taxi`: 
- - It ignores yellow lights, stops when red, and drives when green.
+ - It only stops when red, and drives on all other lights.
 
 <blockquote>
 <details>
@@ -23,7 +23,6 @@ Implement a new class `Taxi`:
 ```java
 public class Taxi
 {
-    private String previousLight;
     private int id;
 
     public Taxi(int id)
@@ -39,21 +38,22 @@ public class Taxi
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                System.out.println("Taxi " + id + " turns engine on");
-            }
-            else
-            {
-                System.out.println("Taxi " + id + " drives");
-            }
+            System.out.println("Taxi " + id + " drives");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("Taxi " + id + " stops");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {                
+            System.out.println("Taxi " + id + " drives");
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
+
 }
 ```
 </details>
@@ -61,9 +61,9 @@ public class Taxi
 </blockquote>
 
 Implement a new class `SleepyDriver`: 
- - If the light is red, and changes to yellow, it doesn’t do anything.
+ - If the light is red and yellow, it doesn’t do anything.
  - When the light changes to green, it start its engine and drives.
- - If the light is green, and changes to yellow, it slows down.
+ - If the light is yellow, it slows down.
  - It stops for red light.
 
 <blockquote>
@@ -78,7 +78,6 @@ Implement a new class `SleepyDriver`:
 ```java
 public class SleepyDriver
 {
-    private String previousLight;
     private int id;
 
     public SleepyDriver(int id)
@@ -95,20 +94,20 @@ public class SleepyDriver
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                //Do nothing
-            }
-            else
-            {
-                System.out.println("SleepyDriver " + id + " slows down");
-            }
+            System.out.println("SleepyDriver " + id + " slows down");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("SleepyDriver " + id + " stops");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {
+            //Do nothing
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
 }
 ```
@@ -118,9 +117,9 @@ public class SleepyDriver
 
 Implement a new class `Pedestrian`. When the cars are waiting for red light, he can cross the road:
  - When the light turns green he waits (green here means green for the cars, we haven't modelled a traffic light for pedestrians).
- - When the light turns from green to yellow, he runs fast across the road.
  - When the light turns red he crosses the road.
- - When the light turns from red to yellow, he gets ready to cross.
+ - When the light turns yellow and red, he runs fast across the road.
+ - When the light turns yellow, he gets ready to cross.
 
 <blockquote>
 <details>
@@ -135,7 +134,6 @@ Implement a new class `Pedestrian`. When the cars are waiting for red light, he 
 public class Pedestrian
 {
     private int id;
-    private String previousLight;
 
     public Pedestrian(int id)
     {
@@ -150,20 +148,20 @@ public class Pedestrian
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                System.out.println("Pedestrian " + id + " gets ready to cross the road");
-            }
-            else
-            {
-                System.out.println("Pedestrian " + id + " walks fast accross the road");
-            }
+            System.out.println("Pedestrian " + id + " gets ready to cross the road");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("Pedestrian " + id + " walks accross the road");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {
+            System.out.println("Pedestrian " + id + " walks fast accross the road");
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
 }
 ```
@@ -179,7 +177,7 @@ public class TrafficLight
     List<SleepyDriver> sleepyDrivers;
     List<Pedestrian> pedestrians;
 
-    private String[] lights = {"GREEN", "YELLOW", "RED", "YELLOW"};
+    private String[] lights = {"GREEN", "YELLOW", "RED", "RED_AND_YELLOW"};
     private int count = 2;
     private String currentLight;
 
@@ -306,7 +304,7 @@ import java.beans.PropertyChangeSupport;
 public class TrafficLight
 {
     private PropertyChangeSupport support;
-    private String[] lights = {"GREEN", "YELLOW", "RED", "YELLOW"};
+    private String[] lights = {"GREEN", "YELLOW", "RED", "RED_AND_YELLOW"};
     private int count = 2;
     private String currentLight;
 
@@ -346,7 +344,6 @@ import java.beans.PropertyChangeListener;
 
 public class Car implements PropertyChangeListener
 {
-    private String previousLight;
     private int id;
 
     public Car(int id)
@@ -356,26 +353,29 @@ public class Car implements PropertyChangeListener
 
     public void setLight(String currentLight)
     {
+        public void setLight(String currentLight)
+    {
         if("GREEN".equals(currentLight))
         {
             System.out.println("Car " + id + " drives");
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                System.out.println("Car " + id + " turns engine on");
-            }
-            else
-            {
-                System.out.println("Car " + id + " slows down");
-            }
+            System.out.println("Car " + id + " slows down");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("Car " + id + " stops");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {                
+            System.out.println("Car " + id + " turns engine on");
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
+    }
     }
 
     @Override
@@ -392,7 +392,6 @@ import java.beans.PropertyChangeListener;
 
 public class Taxi implements PropertyChangeListener
 {
-    private String previousLight;
     private int id;
 
     public Taxi(int id)
@@ -408,20 +407,20 @@ public class Taxi implements PropertyChangeListener
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                System.out.println("Taxi " + id + " turns engine on");
-            }
-            else
-            {
-                System.out.println("Taxi " + id + " drives");
-            }
+            System.out.println("Taxi " + id + " drives");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("Taxi " + id + " stops");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {                
+            System.out.println("Taxi " + id + " drives");
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
 
     @Override
@@ -438,7 +437,6 @@ import java.beans.PropertyChangeListener;
 
 public class SleepyDriver implements PropertyChangeListener
 {
-    private String previousLight;
     private int id;
 
     public SleepyDriver(int id)
@@ -450,25 +448,25 @@ public class SleepyDriver implements PropertyChangeListener
     {
         if("GREEN".equals(currentLight))
         {
-            System.out.println("SleepyDriver " + id + " turns engine on");
+            System.out.println("Taxi " + id + " turns engine on");
             System.out.println("SleepyDriver " + id + " drives");
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                //Do nothing
-            }
-            else
-            {
-                System.out.println("SleepyDriver " + id + " slows down");
-            }
+            System.out.println("Taxi " + id + " slows down");
         }
         else if("RED".equals(currentLight))
         {
-            System.out.println("SleepyDriver " + id + " stops");
+            System.out.println("Taxi " + id + " stops");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {
+            //Do nothing              
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
 
     @Override
@@ -486,7 +484,6 @@ import java.beans.PropertyChangeListener;
 public class Pedestrian implements PropertyChangeListener
 {
     private int id;
-    private String previousLight;
 
     public Pedestrian(int id)
     {
@@ -501,20 +498,20 @@ public class Pedestrian implements PropertyChangeListener
         }
         else if("YELLOW".equals(currentLight))
         {
-            if("RED".equals(previousLight))
-            {
-                System.out.println("Pedestrian " + id + " gets ready to cross the road");
-            }
-            else
-            {
-                System.out.println("Pedestrian " + id + " walks fast accross the road");
-            }
+            System.out.println("Pedestrian " + id + " gets ready to cross the road");
         }
         else if("RED".equals(currentLight))
         {
             System.out.println("Pedestrian " + id + " walks accross the road");
         }
-        previousLight = currentLight;
+        else if("RED_AND_YELLOW".equals(currentLight))
+        {
+            System.out.println("Pedestrian " + id + " walks fast accross the road");
+        }
+        else
+        {
+            System.out.println("Traffic signal broken...");
+        }
     }
 
     @Override

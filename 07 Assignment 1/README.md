@@ -47,7 +47,7 @@ There are some general issues that you might run into:
  - How will you ensure that modifications to the Model are shown in the View? Your ViewModel will most likely contain a List of objects retrieved from the Model. How can you react to those objects changing? Is there anything in JavaFX that can notify us of such changes?
 
 ## Format
-You are allowed to work in groups, but you must hand in individually. 
+You are allowed to work together, but you must hand in individually. 
 
 Hand in everything in a single zip-file with:
 

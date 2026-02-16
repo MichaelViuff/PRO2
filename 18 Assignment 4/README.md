@@ -32,7 +32,7 @@ Focus on the main topics listed above.
 
 ## Format
 
-You are allowed to work in groups, but you must hand in individually.
+You are allowed to work together, but you must hand in individually.
 
 Hand in everything in a single zip-file with:
 

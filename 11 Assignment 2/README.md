@@ -31,7 +31,7 @@ Focus on the patterns, and the concepts being taught, to create clean code.
 Including all design patterns may be difficult, but try your best.
 
 ## Format
-You are allowed to work in groups, but you must hand in individually. 
+You are allowed to work together, but you must hand in individually. 
 
 Hand in everything in a single zip-file with:
 

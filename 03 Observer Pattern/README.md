@@ -448,16 +448,16 @@ public class SleepyDriver implements PropertyChangeListener
     {
         if("GREEN".equals(currentLight))
         {
-            System.out.println("Taxi " + id + " turns engine on");
+            System.out.println("SleepyDriver " + id + " turns engine on");
             System.out.println("SleepyDriver " + id + " drives");
         }
         else if("YELLOW".equals(currentLight))
         {
-            System.out.println("Taxi " + id + " slows down");
+            System.out.println("SleepyDriver " + id + " slows down");
         }
         else if("RED".equals(currentLight))
         {
-            System.out.println("Taxi " + id + " stops");
+            System.out.println("SleepyDriver " + id + " stops");
         }
         else if("RED_AND_YELLOW".equals(currentLight))
         {

@@ -190,7 +190,7 @@ public class SingleLaneBridge implements Lane
   </details>
 </blockquote>
 
-## 16.3 Single lane bridge
+## 16.3 Flight planning system
 
 In this exercise we will model a system where customers can book flights, and administrators can update details on flights.
 
